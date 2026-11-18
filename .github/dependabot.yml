@@ -1,0 +1,53 @@
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    cooldown:
+      default-days: 7
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    ignore:
+      # The types match the major version of Node.js in mise.toml.
+      - dependency-name: "@types/node"
+        update-types: ["version-update:semver-major"]
+      # 4.9.2 depends on a patch file that is not in the package, so it does not install.
+      - dependency-name: "@yarnpkg/core"
+        versions: ["4.9.2"]
+    groups:
+      npm-all:
+        patterns: ["*"]
+        update-types:
+          - "minor"
+          - "patch"
+      npm-major:
+        patterns: ["*"]
+        update-types:
+          - "major"
+      npm-security:
+        applies-to: security-updates
+        patterns: ["*"]
+        update-types:
+          - "minor"
+          - "patch"
+  - package-ecosystem: "github-actions"
+    cooldown:
+      default-days: 7
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    groups:
+      actions-all:
+        patterns: ["*"]
+        update-types:
+          - "minor"
+          - "patch"
+      actions-major:
+        patterns: ["*"]
+        update-types:
+          - "major"
+      actions-security:
+        applies-to: security-updates
+        patterns: ["*"]
+        update-types:
+          - "minor"
+          - "patch"

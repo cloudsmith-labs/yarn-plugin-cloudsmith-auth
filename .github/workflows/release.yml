@@ -1,0 +1,95 @@
+name: Release
+
+# release-please keeps a release PR open with the next version and changelog. Merging that PR
+# creates the tag and the GitHub release, and then the jobs below publish the bundle. See RELEASING.md.
+on:
+  push:
+    branches:
+      - main
+
+permissions: {}
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+jobs:
+  release-please:
+    name: Update the release PR, or create the release
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write # create the tag and the release
+      pull-requests: write # open and update the release PR
+    outputs:
+      created: ${{ steps.release.outputs.release_created }}
+      tag: ${{ steps.release.outputs.tag_name }}
+
+    steps:
+      - name: Run release-please
+        id: release
+        uses: googleapis/release-please-action@45996ed1f6d02564a971a2fa1b5860e934307cf7 # v5.0.0
+        with:
+          # CI does not run on a PR that the default token opens. The Cloudsmith Bot token fixes that.
+          token: ${{ secrets.CLOUDSMITH_BOT_PR_TOKEN || github.token }}
+          config-file: release-please-config.json
+          manifest-file: .release-please-manifest.json
+
+  github:
+    name: Attach the bundle to the GitHub release
+    needs: release-please
+    if: needs.release-please.outputs.created == 'true'
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write # upload the release assets
+    env:
+      TAG: ${{ needs.release-please.outputs.tag }}
+
+    steps:
+      - name: Check out the release
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ needs.release-please.outputs.tag }}
+          persist-credentials: false
+
+      - name: Set up the toolchain with mise
+        uses: jdx/mise-action@f5be966e4a917d54244728e6a5fdcd1d93a35e6c # v5.2.6
+        with:
+          # A poisoned cache entry restored here would end up in a release artifact.
+          cache: false
+
+      - name: Build the bundle
+        run: mise run build
+
+      - name: Upload the bundle
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: gh release upload "$TAG" bundles/yarn-plugin-cloudsmith-auth.cjs
+
+  cloudsmith:
+    name: Publish to Cloudsmith
+    needs: release-please
+    if: needs.release-please.outputs.created == 'true' && vars.RELEASE_CLOUDSMITH_REPO != ''
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+      id-token: write # exchanged for a Cloudsmith token through OIDC
+    env:
+      CLOUDSMITH_ORG: ${{ vars.RELEASE_CLOUDSMITH_ORG }}
+      CLOUDSMITH_REPO: ${{ vars.RELEASE_CLOUDSMITH_REPO }}
+      CLOUDSMITH_SERVICE_SLUG: ${{ vars.RELEASE_CLOUDSMITH_SERVICE_SLUG }}
+
+    steps:
+      - name: Check out the release
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ needs.release-please.outputs.tag }}
+          persist-credentials: false
+
+      - name: Set up the toolchain with mise
+        uses: jdx/mise-action@f5be966e4a917d54244728e6a5fdcd1d93a35e6c # v5.2.6
+        with:
+          cache: false
+
+      - name: Publish the bundle
+        run: mise run publish:cloudsmith
