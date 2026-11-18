@@ -1,0 +1,109 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - "**"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: Test the plugin (Yarn ${{ matrix.yarn }}, Node ${{ matrix.node }})
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - yarn: "4.18.1"
+            node: "24.22.3"
+          - yarn: "4.0.0"
+            node: "18.20.8"
+          - yarn: "3.1.1"
+            node: "18.20.8"
+
+    # The e2e tests run the Yarn under test on the Node under test. The tests
+    # and the plugin build always use the Node and the Yarn in mise.toml.
+    env:
+      YARN_VERSION: ${{ matrix.yarn }}
+      NODE_VERSION: ${{ matrix.node }}
+
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Set up the toolchain with mise
+        uses: jdx/mise-action@f5be966e4a917d54244728e6a5fdcd1d93a35e6c # v5.2.6
+
+      - name: Check the types and run the unit tests
+        run: mise run test
+
+      # Asserts rather than prints: a mismatch means that the leg does not
+      # test what its name says.
+      - name: Run the e2e tests with the Yarn and the Node under test
+        run: |
+          mise install "yarn@${YARN_VERSION}" "node@${NODE_VERSION}"
+          yarn_home="$(mise where "yarn@${YARN_VERSION}")"
+          node_home="$(mise where "node@${NODE_VERSION}")"
+          resolved="$(PATH="${node_home}/bin:${PATH}" "${yarn_home}/bin/yarn" --version) on $("${node_home}/bin/node" --version)"
+          echo "$resolved"
+          if [ "$resolved" != "${YARN_VERSION} on v${NODE_VERSION}" ]; then
+            echo "::error::expected Yarn ${YARN_VERSION} on Node ${NODE_VERSION}"
+            exit 1
+          fi
+          IT_YARN_HOME="${yarn_home}" IT_NODE_HOME="${node_home}" mise run test:e2e
+
+  lint:
+    name: Lint
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Set up the toolchain with mise
+        uses: jdx/mise-action@f5be966e4a917d54244728e6a5fdcd1d93a35e6c # v5.2.6
+
+      - name: Run the hooks
+        run: mise exec -- prek run --all-files --show-diff-on-failure
+
+  build:
+    name: Build the bundle
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Set up the toolchain with mise
+        uses: jdx/mise-action@f5be966e4a917d54244728e6a5fdcd1d93a35e6c # v5.2.6
+        with:
+          # A poisoned cache entry restored here would end up in a release artifact.
+          cache: false
+
+      - name: Build the bundle
+        run: mise run build
+
+      # Yarn reads the name and the factory of a plugin. Without them,
+      # `yarn plugin import` rejects the file.
+      - name: Check that the bundle declares the plugin
+        run: |
+          node -e '
+            const plugin = require("./bundles/yarn-plugin-cloudsmith-auth.cjs");
+            if (plugin.name !== "yarn-plugin-cloudsmith-auth" || typeof plugin.factory !== "function") {
+              process.exit(1);
+            }'

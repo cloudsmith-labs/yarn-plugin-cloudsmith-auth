@@ -1,0 +1,17 @@
+{
+  "name": "yarn-plugin-cloudsmith-auth",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Authenticate Yarn to Cloudsmith npm registries with the Cloudsmith CLI",
+  "license": "Apache-2.0",
+  "repository": "github:cloudsmith-labs/yarn-plugin-cloudsmith-auth",
+  "type": "module",
+  "packageManager": "yarn@4.18.1",
+  "devDependencies": {
+    "@types/node": "24",
+    "@yarnpkg/core": "4.9.1",
+    "@yarnpkg/plugin-npm": "3.7.1",
+    "esbuild": "0.28.2",
+    "typescript": "7.0.2"
+  }
+}
