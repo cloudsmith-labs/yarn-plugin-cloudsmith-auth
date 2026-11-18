@@ -42,29 +42,25 @@ the CLI only a few times.
 
 Install the plugin in one project, or for every project on your computer.
 Releases are in the public Cloudsmith repository
-[`cloudsmith/yarn-plugins`](https://cloudsmith.io/~cloudsmith/repos/yarn-plugins/packages/)
-and on the
-[GitHub releases page](https://github.com/cloudsmith-labs/yarn-plugin-cloudsmith-auth/releases).
-Downloads from Cloudsmith need no credentials.
+[`cloudsmith/yarn-plugins`](https://cloudsmith.io/~cloudsmith/repos/yarn-plugins/packages/).
+Downloads need no credentials. The `latest` URL below always downloads the
+newest version. To upgrade, run the same command again. To pin a version,
+replace `latest` in the URL with the version, for example `0.1.0`.
 
 **One project:** run this command in the root of the project, then commit the
 changes to `.yarnrc.yml` and `.yarn/plugins`:
 
-<!-- x-release-please-start-version -->
 ```sh
-yarn plugin import https://dl.cloudsmith.io/public/cloudsmith/yarn-plugins/raw/names/yarn-plugin-cloudsmith-auth/versions/0.1.0/yarn-plugin-cloudsmith-auth.cjs
+yarn plugin import https://dl.cloudsmith.io/public/cloudsmith/yarn-plugins/raw/names/yarn-plugin-cloudsmith-auth/versions/latest/yarn-plugin-cloudsmith-auth.cjs
 ```
-<!-- x-release-please-end -->
 
 **Every project:** download the plugin to your home directory:
 
-<!-- x-release-please-start-version -->
 ```sh
 mkdir -p ~/.yarn/plugins
 curl -fsSL -o ~/.yarn/plugins/yarn-plugin-cloudsmith-auth.cjs \
-    https://dl.cloudsmith.io/public/cloudsmith/yarn-plugins/raw/names/yarn-plugin-cloudsmith-auth/versions/0.1.0/yarn-plugin-cloudsmith-auth.cjs
+    https://dl.cloudsmith.io/public/cloudsmith/yarn-plugins/raw/names/yarn-plugin-cloudsmith-auth/versions/latest/yarn-plugin-cloudsmith-auth.cjs
 ```
-<!-- x-release-please-end -->
 
 Then add the plugin to `~/.yarnrc.yml`:
 

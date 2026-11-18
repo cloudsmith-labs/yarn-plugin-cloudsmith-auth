@@ -1,7 +1,8 @@
 name: Release
 
 # release-please keeps a release PR open with the next version and changelog. Merging that PR
-# creates the tag and the GitHub release, and then the jobs below publish the bundle. See RELEASING.md.
+# creates the tag and the GitHub release notes, and then the job below publishes the bundle to
+# Cloudsmith, the only download source. See RELEASING.md.
 on:
   push:
     branches:
@@ -33,38 +34,6 @@ jobs:
           token: ${{ secrets.CLOUDSMITH_BOT_PR_TOKEN || github.token }}
           config-file: release-please-config.json
           manifest-file: .release-please-manifest.json
-
-  github:
-    name: Attach the bundle to the GitHub release
-    needs: release-please
-    if: needs.release-please.outputs.created == 'true'
-    runs-on: ubuntu-24.04
-    permissions:
-      contents: write # upload the release assets
-    env:
-      TAG: ${{ needs.release-please.outputs.tag }}
-
-    steps:
-      - name: Check out the release
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-        with:
-          ref: ${{ needs.release-please.outputs.tag }}
-          persist-credentials: false
-
-      - name: Set up the toolchain with mise
-        uses: jdx/mise-action@90f833d396d0cc3674b631d2d225e306476c303a # v5.2.10
-        with:
-          # A poisoned cache entry restored here would end up in a release artifact.
-          cache: false
-
-      - name: Build the bundle
-        run: mise run build
-
-      - name: Upload the bundle
-        env:
-          GH_TOKEN: ${{ github.token }}
-          GH_REPO: ${{ github.repository }}
-        run: gh release upload "$TAG" bundles/yarn-plugin-cloudsmith-auth.cjs
 
   cloudsmith:
     name: Publish to Cloudsmith

@@ -10,21 +10,17 @@ releases.
    [CONTRIBUTING.md](./CONTRIBUTING.md#commit-messages-and-pull-requests).
 2. On each push to `main`, the Release workflow opens or updates a release
    pull request named `chore(main): release X.Y.Z`. It sets the version in
-   `package.json` and in the download URLs of `README.md`, and adds the release
-   notes to `CHANGELOG.md`.
+   `package.json` and adds the release notes to `CHANGELOG.md`.
 3. Review the release pull request, then merge it.
-4. The Release workflow creates the `vX.Y.Z` tag and the GitHub release, and
-   then runs each publish job that is turned on:
+4. The Release workflow creates the `vX.Y.Z` tag and the GitHub release notes.
+   When `RELEASE_CLOUDSMITH_REPO` is set, it publishes the bundle to Cloudsmith
+   as the raw package `yarn-plugin-cloudsmith-auth`. Cloudsmith is the only
+   download source: the GitHub release has no assets.
+5. Confirm that the Cloudsmith repository shows the new version. Then run
+   `yarn plugin import` with the `latest` URL from `README.md` in a test
+   project.
 
-   | Job | Publishes | Runs when |
-   |-----|-----------|-----------|
-   | GitHub | The bundle, attached to the GitHub release | Always |
-   | Cloudsmith | The bundle, as the raw package `yarn-plugin-cloudsmith-auth` | `RELEASE_CLOUDSMITH_REPO` is set |
-
-5. Confirm that each destination shows the new version. Then run
-   `yarn plugin import` with the URL from `README.md` in a test project.
-
-Each publish job runs a mise task, so you can run the same step locally. A
+The publish job runs a mise task, so you can run the same step locally. A
 failed job can be run again from the workflow run page.
 
 ## Set up GitHub
