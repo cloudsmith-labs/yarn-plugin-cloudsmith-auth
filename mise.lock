@@ -48,25 +48,31 @@ backend = "aqua:yarnpkg/berry"
 specifiers = ["3.1.1"]
 
 [tools."aqua:yarnpkg/berry"."platforms.linux-arm64"]
+checksum = "sha256:a7a11cf8a82d868d8cd02ec50bfba4f310964809fe6cd5709eb42e8244bad2b3"
 url = "https://repo.yarnpkg.com/3.1.1/packages/yarnpkg-cli/bin/yarn.js"
 
 [tools."aqua:yarnpkg/berry"."platforms.linux-arm64-musl"]
+checksum = "sha256:a7a11cf8a82d868d8cd02ec50bfba4f310964809fe6cd5709eb42e8244bad2b3"
 url = "https://repo.yarnpkg.com/3.1.1/packages/yarnpkg-cli/bin/yarn.js"
 
 [tools."aqua:yarnpkg/berry"."platforms.linux-x64"]
+checksum = "sha256:a7a11cf8a82d868d8cd02ec50bfba4f310964809fe6cd5709eb42e8244bad2b3"
 url = "https://repo.yarnpkg.com/3.1.1/packages/yarnpkg-cli/bin/yarn.js"
 
 [tools."aqua:yarnpkg/berry"."platforms.linux-x64-musl"]
+checksum = "sha256:a7a11cf8a82d868d8cd02ec50bfba4f310964809fe6cd5709eb42e8244bad2b3"
 url = "https://repo.yarnpkg.com/3.1.1/packages/yarnpkg-cli/bin/yarn.js"
 
 [tools."aqua:yarnpkg/berry"."platforms.macos-arm64"]
-checksum = "blake3:231cd72944506aeb6df9fdd180f7699ed678489bae6d85e58831c01b08521a38"
+checksum = "sha256:a7a11cf8a82d868d8cd02ec50bfba4f310964809fe6cd5709eb42e8244bad2b3"
 url = "https://repo.yarnpkg.com/3.1.1/packages/yarnpkg-cli/bin/yarn.js"
 
 [tools."aqua:yarnpkg/berry"."platforms.macos-x64"]
+checksum = "sha256:a7a11cf8a82d868d8cd02ec50bfba4f310964809fe6cd5709eb42e8244bad2b3"
 url = "https://repo.yarnpkg.com/3.1.1/packages/yarnpkg-cli/bin/yarn.js"
 
 [tools."aqua:yarnpkg/berry"."platforms.windows-x64"]
+checksum = "sha256:a7a11cf8a82d868d8cd02ec50bfba4f310964809fe6cd5709eb42e8244bad2b3"
 url = "https://repo.yarnpkg.com/3.1.1/packages/yarnpkg-cli/bin/yarn.js"
 
 [[tools."aqua:yarnpkg/berry"]]
@@ -75,25 +81,31 @@ backend = "aqua:yarnpkg/berry"
 specifiers = ["4.0.0"]
 
 [tools."aqua:yarnpkg/berry"."platforms.linux-arm64"]
+checksum = "sha256:6d855253732ba8d231b6cd917961654f6c8439164c962a4e355c9c58360ebe44"
 url = "https://repo.yarnpkg.com/4.0.0/packages/yarnpkg-cli/bin/yarn.js"
 
 [tools."aqua:yarnpkg/berry"."platforms.linux-arm64-musl"]
+checksum = "sha256:6d855253732ba8d231b6cd917961654f6c8439164c962a4e355c9c58360ebe44"
 url = "https://repo.yarnpkg.com/4.0.0/packages/yarnpkg-cli/bin/yarn.js"
 
 [tools."aqua:yarnpkg/berry"."platforms.linux-x64"]
+checksum = "sha256:6d855253732ba8d231b6cd917961654f6c8439164c962a4e355c9c58360ebe44"
 url = "https://repo.yarnpkg.com/4.0.0/packages/yarnpkg-cli/bin/yarn.js"
 
 [tools."aqua:yarnpkg/berry"."platforms.linux-x64-musl"]
+checksum = "sha256:6d855253732ba8d231b6cd917961654f6c8439164c962a4e355c9c58360ebe44"
 url = "https://repo.yarnpkg.com/4.0.0/packages/yarnpkg-cli/bin/yarn.js"
 
 [tools."aqua:yarnpkg/berry"."platforms.macos-arm64"]
-checksum = "blake3:7f996b43baa9ac740840b3556f10f681634cbf6c0926019247924bb501d93241"
+checksum = "sha256:6d855253732ba8d231b6cd917961654f6c8439164c962a4e355c9c58360ebe44"
 url = "https://repo.yarnpkg.com/4.0.0/packages/yarnpkg-cli/bin/yarn.js"
 
 [tools."aqua:yarnpkg/berry"."platforms.macos-x64"]
+checksum = "sha256:6d855253732ba8d231b6cd917961654f6c8439164c962a4e355c9c58360ebe44"
 url = "https://repo.yarnpkg.com/4.0.0/packages/yarnpkg-cli/bin/yarn.js"
 
 [tools."aqua:yarnpkg/berry"."platforms.windows-x64"]
+checksum = "sha256:6d855253732ba8d231b6cd917961654f6c8439164c962a4e355c9c58360ebe44"
 url = "https://repo.yarnpkg.com/4.0.0/packages/yarnpkg-cli/bin/yarn.js"
 
 [[tools."aqua:yarnpkg/berry"]]
@@ -102,25 +114,31 @@ backend = "aqua:yarnpkg/berry"
 specifiers = ["4.18.1"]
 
 [tools."aqua:yarnpkg/berry"."platforms.linux-arm64"]
+checksum = "sha256:a28ad591febb769f939c11f82f89bacad0b0fac0c884d3b78fa2aaaee970907e"
 url = "https://repo.yarnpkg.com/4.18.1/packages/yarnpkg-cli/bin/yarn.js"
 
 [tools."aqua:yarnpkg/berry"."platforms.linux-arm64-musl"]
+checksum = "sha256:a28ad591febb769f939c11f82f89bacad0b0fac0c884d3b78fa2aaaee970907e"
 url = "https://repo.yarnpkg.com/4.18.1/packages/yarnpkg-cli/bin/yarn.js"
 
 [tools."aqua:yarnpkg/berry"."platforms.linux-x64"]
+checksum = "sha256:a28ad591febb769f939c11f82f89bacad0b0fac0c884d3b78fa2aaaee970907e"
 url = "https://repo.yarnpkg.com/4.18.1/packages/yarnpkg-cli/bin/yarn.js"
 
 [tools."aqua:yarnpkg/berry"."platforms.linux-x64-musl"]
+checksum = "sha256:a28ad591febb769f939c11f82f89bacad0b0fac0c884d3b78fa2aaaee970907e"
 url = "https://repo.yarnpkg.com/4.18.1/packages/yarnpkg-cli/bin/yarn.js"
 
 [tools."aqua:yarnpkg/berry"."platforms.macos-arm64"]
-checksum = "blake3:92d0d76029ae8c825fbef9d01f905f51973aac47f428f177dd53f39858fdfe53"
+checksum = "sha256:a28ad591febb769f939c11f82f89bacad0b0fac0c884d3b78fa2aaaee970907e"
 url = "https://repo.yarnpkg.com/4.18.1/packages/yarnpkg-cli/bin/yarn.js"
 
 [tools."aqua:yarnpkg/berry"."platforms.macos-x64"]
+checksum = "sha256:a28ad591febb769f939c11f82f89bacad0b0fac0c884d3b78fa2aaaee970907e"
 url = "https://repo.yarnpkg.com/4.18.1/packages/yarnpkg-cli/bin/yarn.js"
 
 [tools."aqua:yarnpkg/berry"."platforms.windows-x64"]
+checksum = "sha256:a28ad591febb769f939c11f82f89bacad0b0fac0c884d3b78fa2aaaee970907e"
 url = "https://repo.yarnpkg.com/4.18.1/packages/yarnpkg-cli/bin/yarn.js"
 
 [[tools.biome]]
