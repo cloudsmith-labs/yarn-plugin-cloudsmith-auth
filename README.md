@@ -38,7 +38,7 @@ only a few times.
 ## Where to get it
 
 Releases are published to the public Cloudsmith repository
-[`cloudsmith/yarn-tools`](https://cloudsmith.io/~cloudsmith/repos/yarn-tools/packages/),
+[`cloudsmith/yarn-plugins`](https://cloudsmith.io/~cloudsmith/repos/yarn-plugins/packages/),
 and attached to each
 [GitHub release](https://github.com/cloudsmith-labs/yarn-plugin-cloudsmith-auth/releases).
 Downloads from Cloudsmith need no credentials. To build from source instead,
@@ -53,7 +53,7 @@ to `.yarnrc.yml` and `.yarn/plugins`:
 
 <!-- x-release-please-start-version -->
 ```sh
-yarn plugin import https://dl.cloudsmith.io/public/cloudsmith/yarn-tools/raw/names/yarn-plugin-cloudsmith-auth/versions/0.1.0/yarn-plugin-cloudsmith-auth.cjs
+yarn plugin import https://dl.cloudsmith.io/public/cloudsmith/yarn-plugins/raw/names/yarn-plugin-cloudsmith-auth/versions/0.1.0/yarn-plugin-cloudsmith-auth.cjs
 ```
 <!-- x-release-please-end -->
 
@@ -64,7 +64,7 @@ loads the plugins of `~/.yarnrc.yml` in every project:
 ```sh
 mkdir -p ~/.yarn/plugins
 curl -fsSL -o ~/.yarn/plugins/yarn-plugin-cloudsmith-auth.cjs \
-    https://dl.cloudsmith.io/public/cloudsmith/yarn-tools/raw/names/yarn-plugin-cloudsmith-auth/versions/0.1.0/yarn-plugin-cloudsmith-auth.cjs
+    https://dl.cloudsmith.io/public/cloudsmith/yarn-plugins/raw/names/yarn-plugin-cloudsmith-auth/versions/0.1.0/yarn-plugin-cloudsmith-auth.cjs
 ```
 <!-- x-release-please-end -->
 

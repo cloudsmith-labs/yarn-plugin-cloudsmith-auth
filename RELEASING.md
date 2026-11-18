@@ -43,7 +43,7 @@ failed job can be run again from the workflow run page.
 The release job authenticates to Cloudsmith with GitHub Actions OIDC.
 
 1. Create a public Cloudsmith repository for releases. `README.md` gives the
-   URLs of the `cloudsmith/yarn-tools` repository.
+   URLs of the `cloudsmith/yarn-plugins` repository.
 2. Create a service account with write access to the repository.
 3. Add a GitHub Actions OIDC provider with the claims `repository` set to this
    GitHub repository and `ref` set to `refs/heads/main`, and map it to the
