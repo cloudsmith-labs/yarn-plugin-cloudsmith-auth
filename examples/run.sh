@@ -45,6 +45,8 @@ prepare() {
   touch "${work}/$1/yarn.lock"
   cat > "${work}/$1/.yarnrc.yml" <<YAML
 enableGlobalCache: false
+# Yarn makes installs immutable in CI. Each run makes a new lockfile.
+enableImmutableInstalls: false
 enableTelemetry: false
 npmAlwaysAuth: true
 npmPreapprovedPackages: ["cloudsmith-example-yarn"]
