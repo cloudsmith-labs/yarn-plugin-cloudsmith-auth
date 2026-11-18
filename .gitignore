@@ -1,0 +1,12 @@
+# Negated: mise.toml is committed, but is a common global gitignore entry.
+!mise.toml
+mise.local.toml
+.mise/
+
+node_modules/
+bundles/
+.yarn/*
+!.yarn/patches
+.idea/
+.vscode/
+.DS_Store
