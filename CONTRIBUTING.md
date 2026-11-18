@@ -70,13 +70,13 @@ requires authentication, with a shell script in place of the CLI. The e2e
 tests need `openssl` to make the certificate of the registry, and do not run
 on Windows.
 
-The e2e tests use the Yarn on `PATH`, on the Node.js that runs the tests. To
-test other versions, as CI does:
+The e2e tests use the Yarn on `PATH`, on the Node.js that runs the tests.
+`mise.toml` pins the other Yarn and Node.js versions that CI tests. To test
+one of them:
 
 ```sh
-mise install yarn@3.1.1 node@18.20.8
-IT_YARN_HOME="$(mise where yarn@3.1.1)" IT_NODE_HOME="$(mise where node@18.20.8)" \
-    mise run test:e2e
+IT_YARN="$(mise which yarn --tool aqua:yarnpkg/berry@3.1.1)" \
+    IT_NODE_HOME="$(mise where node@18.20.8)" mise run test:e2e
 ```
 
 `test/cli.test.ts` reads `test/fixtures/domains_list_v1.json`, the output of a

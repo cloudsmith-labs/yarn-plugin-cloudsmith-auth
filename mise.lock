@@ -42,6 +42,87 @@ checksum = "sha256:66a5c2b66d95e447001d5b87cc03f38673ffbe52423f15cd1f2b64ba4814c
 url = "https://github.com/cloudsmith-io/cloudsmith-cli/releases/download/v1.31.3/cloudsmith-1.31.3-windows-x86_64.zip"
 url_api = "https://api.github.com/repos/cloudsmith-io/cloudsmith-cli/releases/assets/759041302"
 
+[[tools."aqua:yarnpkg/berry"]]
+version = "3.1.1"
+backend = "aqua:yarnpkg/berry"
+specifiers = ["3.1.1"]
+
+[tools."aqua:yarnpkg/berry"."platforms.linux-arm64"]
+url = "https://repo.yarnpkg.com/3.1.1/packages/yarnpkg-cli/bin/yarn.js"
+
+[tools."aqua:yarnpkg/berry"."platforms.linux-arm64-musl"]
+url = "https://repo.yarnpkg.com/3.1.1/packages/yarnpkg-cli/bin/yarn.js"
+
+[tools."aqua:yarnpkg/berry"."platforms.linux-x64"]
+url = "https://repo.yarnpkg.com/3.1.1/packages/yarnpkg-cli/bin/yarn.js"
+
+[tools."aqua:yarnpkg/berry"."platforms.linux-x64-musl"]
+url = "https://repo.yarnpkg.com/3.1.1/packages/yarnpkg-cli/bin/yarn.js"
+
+[tools."aqua:yarnpkg/berry"."platforms.macos-arm64"]
+checksum = "blake3:231cd72944506aeb6df9fdd180f7699ed678489bae6d85e58831c01b08521a38"
+url = "https://repo.yarnpkg.com/3.1.1/packages/yarnpkg-cli/bin/yarn.js"
+
+[tools."aqua:yarnpkg/berry"."platforms.macos-x64"]
+url = "https://repo.yarnpkg.com/3.1.1/packages/yarnpkg-cli/bin/yarn.js"
+
+[tools."aqua:yarnpkg/berry"."platforms.windows-x64"]
+url = "https://repo.yarnpkg.com/3.1.1/packages/yarnpkg-cli/bin/yarn.js"
+
+[[tools."aqua:yarnpkg/berry"]]
+version = "4.0.0"
+backend = "aqua:yarnpkg/berry"
+specifiers = ["4.0.0"]
+
+[tools."aqua:yarnpkg/berry"."platforms.linux-arm64"]
+url = "https://repo.yarnpkg.com/4.0.0/packages/yarnpkg-cli/bin/yarn.js"
+
+[tools."aqua:yarnpkg/berry"."platforms.linux-arm64-musl"]
+url = "https://repo.yarnpkg.com/4.0.0/packages/yarnpkg-cli/bin/yarn.js"
+
+[tools."aqua:yarnpkg/berry"."platforms.linux-x64"]
+url = "https://repo.yarnpkg.com/4.0.0/packages/yarnpkg-cli/bin/yarn.js"
+
+[tools."aqua:yarnpkg/berry"."platforms.linux-x64-musl"]
+url = "https://repo.yarnpkg.com/4.0.0/packages/yarnpkg-cli/bin/yarn.js"
+
+[tools."aqua:yarnpkg/berry"."platforms.macos-arm64"]
+checksum = "blake3:7f996b43baa9ac740840b3556f10f681634cbf6c0926019247924bb501d93241"
+url = "https://repo.yarnpkg.com/4.0.0/packages/yarnpkg-cli/bin/yarn.js"
+
+[tools."aqua:yarnpkg/berry"."platforms.macos-x64"]
+url = "https://repo.yarnpkg.com/4.0.0/packages/yarnpkg-cli/bin/yarn.js"
+
+[tools."aqua:yarnpkg/berry"."platforms.windows-x64"]
+url = "https://repo.yarnpkg.com/4.0.0/packages/yarnpkg-cli/bin/yarn.js"
+
+[[tools."aqua:yarnpkg/berry"]]
+version = "4.18.1"
+backend = "aqua:yarnpkg/berry"
+specifiers = ["4.18.1"]
+
+[tools."aqua:yarnpkg/berry"."platforms.linux-arm64"]
+url = "https://repo.yarnpkg.com/4.18.1/packages/yarnpkg-cli/bin/yarn.js"
+
+[tools."aqua:yarnpkg/berry"."platforms.linux-arm64-musl"]
+url = "https://repo.yarnpkg.com/4.18.1/packages/yarnpkg-cli/bin/yarn.js"
+
+[tools."aqua:yarnpkg/berry"."platforms.linux-x64"]
+url = "https://repo.yarnpkg.com/4.18.1/packages/yarnpkg-cli/bin/yarn.js"
+
+[tools."aqua:yarnpkg/berry"."platforms.linux-x64-musl"]
+url = "https://repo.yarnpkg.com/4.18.1/packages/yarnpkg-cli/bin/yarn.js"
+
+[tools."aqua:yarnpkg/berry"."platforms.macos-arm64"]
+checksum = "blake3:92d0d76029ae8c825fbef9d01f905f51973aac47f428f177dd53f39858fdfe53"
+url = "https://repo.yarnpkg.com/4.18.1/packages/yarnpkg-cli/bin/yarn.js"
+
+[tools."aqua:yarnpkg/berry"."platforms.macos-x64"]
+url = "https://repo.yarnpkg.com/4.18.1/packages/yarnpkg-cli/bin/yarn.js"
+
+[tools."aqua:yarnpkg/berry"."platforms.windows-x64"]
+url = "https://repo.yarnpkg.com/4.18.1/packages/yarnpkg-cli/bin/yarn.js"
+
 [[tools.biome]]
 version = "2.6.8"
 backend = "aqua:biomejs/biome"
@@ -130,6 +211,40 @@ url = "https://github.com/gitleaks/gitleaks/releases/download/v8.30.1/gitleaks_8
 url_api = "https://api.github.com/repos/gitleaks/gitleaks/releases/assets/378333178"
 
 [[tools.node]]
+version = "18.20.8"
+backend = "core:node"
+specifiers = ["18.20.8"]
+
+[tools.node."platforms.linux-arm64"]
+checksum = "sha256:2e3dfc51154e6fea9fc86a90c4ea8f3ecb8b60acaf7367c4b76691da192571c1"
+url = "https://nodejs.org/dist/v18.20.8/node-v18.20.8-linux-arm64.tar.gz"
+
+[tools.node."platforms.linux-arm64-musl"]
+checksum = "sha256:ec60a6d2344ef9e1f093991ca1bb6bbe92c61c29d1762c4b99e08f87dbb91e2f"
+url = "https://nodejs.org/dist/v18.20.8/node-v18.20.8.tar.gz"
+install = "source"
+
+[tools.node."platforms.linux-x64"]
+checksum = "sha256:27a9f3f14d5e99ad05a07ed3524ba3ee92f8ff8b6db5ff80b00f9feb5ec8097a"
+url = "https://nodejs.org/dist/v18.20.8/node-v18.20.8-linux-x64.tar.gz"
+
+[tools.node."platforms.linux-x64-musl"]
+checksum = "sha256:8c0d7bf9c6a5dd1470b8015d04d8428ba8984929e8dc381a3949405b14bbf3e1"
+url = "https://unofficial-builds.nodejs.org/download/release/v18.20.8/node-v18.20.8-linux-x64-musl.tar.gz"
+
+[tools.node."platforms.macos-arm64"]
+checksum = "sha256:bae4965d29d29bd32f96364eefbe3bca576a03e917ddbb70b9330d75f2cacd76"
+url = "https://nodejs.org/dist/v18.20.8/node-v18.20.8-darwin-arm64.tar.gz"
+
+[tools.node."platforms.macos-x64"]
+checksum = "sha256:ed2554677188f4afc0d050ecd8bd56effb2572d6518f8da6d40321ede6698509"
+url = "https://nodejs.org/dist/v18.20.8/node-v18.20.8-darwin-x64.tar.gz"
+
+[tools.node."platforms.windows-x64"]
+checksum = "sha256:1a1e40260a6facba83636e4cd0ba01eb5bd1386896824b36645afba44857384a"
+url = "https://nodejs.org/dist/v18.20.8/node-v18.20.8-win-x64.zip"
+
+[[tools.node]]
 version = "24.22.3"
 backend = "core:node"
 specifiers = ["24.22.3"]
@@ -208,8 +323,3 @@ checksum = "sha256:6e52e1723b1b753b977be632a150d5516862471b29c14ad8e7d71685f0776
 url = "https://github.com/j178/prek/releases/download/v0.5.5/prek-x86_64-pc-windows-msvc.zip"
 url_api = "https://api.github.com/repos/j178/prek/releases/assets/611684549"
 provenance = "github-attestations"
-
-[[tools.yarn]]
-version = "4.18.1"
-backend = "vfox:jdx/vfox-yarn"
-specifiers = ["4.18.1"]

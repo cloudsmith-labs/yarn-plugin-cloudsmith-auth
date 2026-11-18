@@ -22,10 +22,8 @@ const BUNDLE = fileURLToPath(
 );
 const PASSWORD = "e2e-secret";
 const CLI_CREDENTIAL = `Basic ${Buffer.from(`token:${PASSWORD}`).toString("base64")}`;
-/** The Yarn under test: IT_YARN_HOME, or the Yarn on PATH. */
-const YARN = process.env.IT_YARN_HOME
-  ? join(process.env.IT_YARN_HOME, "bin", "yarn")
-  : findOnPath("yarn");
+/** The Yarn under test: IT_YARN, or the Yarn on PATH. */
+const YARN = process.env["IT_YARN"] ?? findOnPath("yarn");
 /** The Node that runs the Yarn under test: IT_NODE_HOME, or the Node that runs the tests. */
 const NODE_BIN = process.env.IT_NODE_HOME
   ? join(process.env.IT_NODE_HOME, "bin")
