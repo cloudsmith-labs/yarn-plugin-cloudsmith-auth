@@ -1,6 +1,6 @@
 {
   "name": "yarn-plugin-cloudsmith-auth",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "private": true,
   "description": "Authenticate Yarn to Cloudsmith npm registries with the Cloudsmith CLI",
   "license": "Apache-2.0",
