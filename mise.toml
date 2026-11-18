@@ -1,0 +1,64 @@
+# The first version of node and of yarn is the default. CI runs the e2e tests with the others too.
+[tools]
+node = ["26.13.1", "18.20.8"]
+"aqua:yarnpkg/berry" = ["4.18.1", "4.0.0", "3.1.1"]
+biome = "2.6.8"
+gitleaks = "8.30.1"
+prek = "0.5.11"
+"aqua:cloudsmith-io/cloudsmith-cli" = "1.31.3"
+
+[tasks.install]
+description = "Install the development dependencies"
+run = "yarn install --immutable"
+
+[tasks.build]
+description = "Build the plugin bundle in bundles/"
+depends = ["install"]
+run = "node build.ts"
+
+[tasks.test]
+description = "Check the types and run the unit tests"
+depends = ["install"]
+run = ["yarn tsc -p .", "node --test 'test/*.test.ts'"]
+
+[tasks."test:e2e"]
+description = "Run real Yarn builds against a local HTTPS registry (set IT_YARN and IT_NODE_HOME to test other versions)"
+depends = ["build"]
+run = "node --test 'test/e2e/*.test.ts'"
+
+[tasks.verify]
+description = "Run every test"
+depends = ["test", "test:e2e"]
+
+[tasks.example]
+description = "Publish the example library with Yarn and install it in the example app (set CLOUDSMITH_ORG and CLOUDSMITH_REPO)"
+depends = ["build"]
+run = "examples/run.sh"
+
+[tasks."publish:cloudsmith"]
+description = "Publish the plugin bundle as a raw package to the Cloudsmith repository in CLOUDSMITH_ORG and CLOUDSMITH_REPO"
+depends = ["build"]
+run = """
+#!/usr/bin/env bash
+set -euo pipefail
+cloudsmith push raw "${CLOUDSMITH_ORG:?Set CLOUDSMITH_ORG}/${CLOUDSMITH_REPO:?Set CLOUDSMITH_REPO}" \\
+  bundles/yarn-plugin-cloudsmith-auth.cjs --name yarn-plugin-cloudsmith-auth \\
+  --version "$(node -p 'require("./package.json").version')" \\
+  --summary "Authenticate Yarn to Cloudsmith npm registries with the Cloudsmith CLI"
+"""
+
+[tasks.format]
+description = "Format and fix the TypeScript, JSON, and other sources"
+run = "biome check --write ."
+
+[tasks.lint]
+description = "Run every check CI runs"
+run = "prek run --all-files"
+
+[tasks.hooks]
+description = "Install the git hooks so the checks run before each commit"
+run = "prek install"
+
+[tasks.secrets]
+description = "Scan the whole working tree and history for secrets"
+run = ["gitleaks dir --redact --verbose .", "gitleaks git --redact --verbose ."]

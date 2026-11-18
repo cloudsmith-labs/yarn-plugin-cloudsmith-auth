@@ -1,0 +1,7 @@
+{
+  "name": "cloudsmith-example-yarn-app",
+  "private": true,
+  "dependencies": {
+    "cloudsmith-example-yarn": "0.1.0"
+  }
+}
