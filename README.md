@@ -47,6 +47,19 @@ Downloads need no credentials. The `latest` URL below always downloads the
 newest version. To upgrade, run the same command again. To pin a version,
 replace `latest` in the URL with the version, for example `0.1.0`.
 
+**With the Cloudsmith CLI:** the CLI 1.32.0 or later can install the plugin
+for you. Use the first command for every project, or the second command in the
+root of one project:
+
+```sh
+cloudsmith credential-helper install yarn
+cloudsmith credential-helper install yarn --local
+```
+
+To upgrade, run the same command again. To remove the plugin, run
+`cloudsmith credential-helper uninstall yarn`, with `--local` for one project.
+To install the plugin without the CLI command, use one of these steps.
+
 **One project:** run this command in the root of the project, then commit the
 changes to `.yarnrc.yml` and `.yarn/plugins`:
 
